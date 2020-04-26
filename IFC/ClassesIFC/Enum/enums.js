@@ -1,0 +1,5 @@
+module.exports = {
+    IfcStateEnum = ['READWRITE', 'READONLY', 'LOCKED', 'READWRITELOCKED', 'READONLYLOCKED'],
+    IfcChangeActionEnum= [	'NOCHANGE', 'MODIFIED', 'ADDED', 'DELETED', 'MODIFIEDADDED', 'MODIFIEDDELETED']
+    
+}

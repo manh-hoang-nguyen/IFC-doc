@@ -1,0 +1,11 @@
+/*An example definition of a unit for specific heat capacity (Joule / kg Kelvin), which is defined as a
+derived unit based on basic SI units:*/
+#1=IFCPROJECT('abcdefghijklmnopqrst09', #100, '', $, $, $, $, (#101), #2);
+#2=IFCUNITASSIGNMENT((#3));
+#3=IFCDERIVEDUNIT((#5, #6, #4), .SPECIFICHEATCAPACITYUNIT., $);
+#4=IFCDERIVEDUNITELEMENT(#7, 1);
+#5=IFCDERIVEDUNITELEMENT(#8, -1);
+#6=IFCDERIVEDUNITELEMENT(#9, -1);
+#7=IFCSIUNIT(*, .ENERGYUNIT., $, .JOULE.);
+#8=IFCSIUNIT(*, .MASSUNIT., .KILO., .GRAM.);
+#9=IFCSIUNIT(*, .THERMODYNAMICTEMPERATUREUNIT., $, .KELVIN.);

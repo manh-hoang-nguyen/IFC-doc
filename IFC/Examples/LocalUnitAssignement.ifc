@@ -1,0 +1,16 @@
+/*
+3.3.3 Local unit assignment
+An example where the IfcRelAssignsToProcess.QuantityInProcess : IfcMeasureWithUnit of data type
+IfcMeasureWithUnit is given a value in liters (value 10 liters e.g. as a quantity value for paint) as a
+conversion based unit based on SI unit cubic meter. Here an “overriding” specific unit can be defined
+on the instance level independent of the global unit for volume measure (here SI unit cubic meter)
+*/
+
+#1=IFCPROJECT('abcdefghijklmnopqrst10', #100, '', $, $, $, $, $, #2, $, $);
+#2=IFCUNITASSIGNMENT((#8));
+#3=IFCRELASSIGNSTOPROCESS'abcdefghijklmnopqrst11', #100, $, $, (#51,#52), $, #53, #4);
+#4=IFCMEASUREWITHUNIT(10., #5);
+#5=IFCCONVERSIONBASEDUNIT(#6, .VOLUMEUNIT., 'LITRE', #7);
+#6=IFCDIMENSIONALEXPONENTS(3, 0, 0, 0, 0, 0, 0);
+#7=IFCMEASUREWITHUNIT(IFCVOLUMEMEASURE(0.001), #8);
+#8=IFCSIUNIT(*, .VOLUMEUNIT., $, .CUBIC_METRE.);

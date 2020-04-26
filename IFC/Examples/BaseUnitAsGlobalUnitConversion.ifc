@@ -1,0 +1,25 @@
+/*
+Global units within a project could also be given as derived units (although the use of standard SI units
+is encouraged). In this case the IfcUnitAssignment should refer to the derived unit definition, given by
+the unit type, a name and the conversion rate in regard to the SI units for the same unit type.
+The ValueComponent of the IfcMeasureWithUnit that is used as ConversionFactor should given the
+amount of the base units, that equals 1 conversion based unit.
+Examples
+ IfcConversionBasedUnit = “Inch” – ValueComponent of ConversionFactor = 25.40005
+ IfcConversionBasedUnit = “Degree” – ValueComponent of ConversionFactor =
+0.0174532926
+If degrees should be used for plane angle measures, in contrary to the example above (i.e. 180’
+instead of 3.1416, or π), than it has to be declared as a derived unit, referring to the radian as the
+underlying SI unit.
+*/
+
+#1= IFCPROJECT('fabcdeghijklmnopqrst02',#7,'test project',$,$,$,$,(#20),#30);
+#30= IFCUNITASSIGNMENT((#33, #34, #35, #36));
+#33= IFCSIUNIT(*, .LENGTHUNIT., .MILLI., .METRE.);
+#34= IFCSIUNIT(*, .AREAUNIT., $, .SQUARE_METRE.);
+#35= IFCSIUNIT(*, .VOLUMEUNIT., $, .CUBIC_METRE.);
+#36= IFCCONVERSIONBASEDUNIT(#40, .PLANEANGLEUNIT., 'DEGREE', #41);
+#40= IFCDIMENSIONALEXPONENTS(0, 0, 0, 0, 0, 0, 0);
+#41= IFCMEASUREWITHUNIT(IFCPLANEANGLEMEASURE(57.29577951308232), #50);
+#41= IFCMEASUREWITHUNIT(IFCPLANEANGLEMEASURE( 0.01745329263638), #50);
+#50= IFCSIUNIT(*. .PLANEANGLEUNIT., $, .RADIAN.);

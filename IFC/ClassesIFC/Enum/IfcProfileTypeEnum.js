@@ -1,0 +1,1 @@
+const IfcProfileTypeEnum = ['CURVE', 'AREA'];

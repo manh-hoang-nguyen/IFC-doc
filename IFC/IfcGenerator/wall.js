@@ -15,7 +15,7 @@ function ifcWallStandardCaseGenerator(
 ) {
   let localPlacementNum = startNum + 1;
   let productDefNum = startNum + 2;
-  let L1_ifcWall = `#${startNum}= IFCWALLSTANDARDCASE('${globalId}',#${ownerHistory},'${wallName}','${wallDesc}','${wallTypeName}',#${localPlacementNum},#${productDefNum},'${tag}');`;
+  let L1_ifcWall = `#${startNum}= IFCWALLSTANDARDCASE('${globalId}',#${ownerHistory},${wallName},${wallDesc},${wallTypeName},#${localPlacementNum},#${productDefNum},${tag});`;
   /**Create placemennt */
   let L2_ifcLocalPlacement = `#${localPlacementNum}= IFCLOCALPLACEMENT($,#${startNum + 3});`;
   let L3_axis2Placement = `#${startNum + 3}= IFCAXIS2PLACEMENT3D(#${startNum + 4},$,#${startNum + 5});`;
@@ -57,30 +57,30 @@ function ifcWallStandardCaseGenerator(
   let L25_direcExtrude = `#${startNum + 18}= IFCDIRECTION((0.0,0.0,1.0));`;
 
   let result =
-    L1_ifcWall +
-    L2_ifcLocalPlacement +
-    L3_axis2Placement +
-    L4_cartesianpoint1 +
-    L5_direction1 +
-    L6_ifcProductDef +
-    L7_shape1 +
-    L8_trimmedCurve +
-    L9_line +
-    L10_pointLine +
-    L11_vectorLine +
-    L12_direcVector +
-    L13_pointShape1 +
-    L14_point2Shape1 +
-    L15_shape2 +
-    L16_extrudeSolid +
-    L17_profileDef +
-    L18_polyLine +
-    L19_point1 +
-    L20_point2 +
-    L21_point3 +
-    L22_point4 +
-    L23_axis +
-    L24_point +
+    L1_ifcWall +"\n"+
+    L2_ifcLocalPlacement +"\n"+
+    L3_axis2Placement +"\n"+
+    L4_cartesianpoint1 +"\n"+
+    L5_direction1 +"\n"+
+    L6_ifcProductDef +"\n"+
+    L7_shape1 +"\n"+
+    L8_trimmedCurve +"\n"+
+    L9_line +"\n"+
+    L10_pointLine +"\n"+
+    L11_vectorLine +"\n"+
+    L12_direcVector +"\n"+
+    L13_pointShape1 +"\n"+
+    L14_point2Shape1 +"\n"+
+    L15_shape2 +"\n"+
+    L16_extrudeSolid +"\n"+
+    L17_profileDef +"\n"+
+    L18_polyLine +"\n"+
+    L19_point1 +"\n"+
+    L20_point2 +"\n"+
+    L21_point3 +"\n"+
+    L22_point4 +"\n"+
+    L23_axis +"\n"+
+    L24_point +"\n"+
     L25_direcExtrude;
   return { endNum: startNum + 25, result: result };
 }

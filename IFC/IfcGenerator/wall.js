@@ -1,3 +1,5 @@
+const { valueConverter } = require('./valueConverter');
+
 function ifcWallStandardCaseGenerator(
   startNum,
   globalId,
@@ -15,7 +17,13 @@ function ifcWallStandardCaseGenerator(
 ) {
   let localPlacementNum = startNum + 1;
   let productDefNum = startNum + 2;
-  let L1_ifcWall = `#${startNum}= IFCWALLSTANDARDCASE('${globalId}',#${ownerHistory},${wallName},${wallDesc},${wallTypeName},#${localPlacementNum},#${productDefNum},${tag});`;
+  globalId = valueConverter(globalId);
+  ownerHistory = valueConverter(ownerHistory);
+  wallName = valueConverter(wallName);
+  wallDesc = valueConverter(wallDesc);
+  wallTypeName = valueConverter(wallTypeName);
+  tag = valueConverter(tag);
+  let L1_ifcWall = `#${startNum}= IFCWALLSTANDARDCASE(${globalId},${ownerHistory},${wallName},${wallDesc},${wallTypeName},#${localPlacementNum},#${productDefNum},${tag});`;
   /**Create placemennt */
   let L2_ifcLocalPlacement = `#${localPlacementNum}= IFCLOCALPLACEMENT($,#${startNum + 3});`;
   let L3_axis2Placement = `#${startNum + 3}= IFCAXIS2PLACEMENT3D(#${startNum + 4},$,#${startNum + 5});`;
@@ -25,7 +33,7 @@ function ifcWallStandardCaseGenerator(
   /**Create representation */
   let L6_ifcProductDef = `#${productDefNum}= IFCPRODUCTDEFINITIONSHAPE($,$,(#${startNum + 6},#${startNum + 7}));`;
   /**Create axis */
-  let L7_shape1 = `#${startNum + 6}= IFCSHAPEREPRESENTATION(#${geoPresentationCtx},'Axis, 'Curve2D',(#${
+  let L7_shape1 = `#${startNum + 6}= IFCSHAPEREPRESENTATION(#${geoPresentationCtx},'Axis', 'Curve2D',(#${
     startNum + 8
   }));`;
   let L8_trimmedCurve = `#${startNum + 8}= IFCTRIMMEDCURVE(#${startNum + 9},(#${startNum + 10}),(#${
@@ -38,49 +46,73 @@ function ifcWallStandardCaseGenerator(
   let L13_pointShape1 = `#${startNum + 10}= IFCCARTESIANPOINT((0.0,0.0));`;
   let L14_point2Shape1 = `#${startNum + 11}= IFCCARTESIANPOINT((1,0.0));`;
 
-  let L15_shape2 = `#${startNum + 7}= IFCSHAPEREPRESENTATION(#${geoPresentationCtx},'Body, 'SweptSolid',(#${
+  let L15_shape2 = `#${startNum + 7}= IFCSHAPEREPRESENTATION(#${geoPresentationCtx},'Body', 'SweptSolid',(#${
     startNum + 15
   }));`;
   let L16_extrudeSolid = `#${startNum + 15}= IFCEXTRUDEDAREASOLID(#${startNum + 16},#${startNum + 17},#${
     startNum + 18
-  },${height});`;
+  },${height.toFixed(6)});`;
   let L17_profileDef = `#${startNum + 16}= IFCARBITRARYCLOSEDPROFILEDEF(.AREA.,$,#${startNum + 19});`;
   let L18_polyLine = `#${startNum + 19}= IFCPOLYLINE((#${startNum + 20},#${startNum + 21},#${startNum + 22},#${
     startNum + 23
   },#${startNum + 20}));`;
   let L19_point1 = `#${startNum + 20}= IFCCARTESIANPOINT((0.0,${thinkness / 2}));`;
   let L20_point2 = `#${startNum + 21}= IFCCARTESIANPOINT((${length},${thinkness / 2}));`;
-  let L21_point3 = `#${startNum + 22}= IFCCARTESIANPOINT(((${length},${-thinkness / 2}));`;
+  let L21_point3 = `#${startNum + 22}= IFCCARTESIANPOINT((${length},${-thinkness / 2}));`;
   let L22_point4 = `#${startNum + 23}= IFCCARTESIANPOINT((0.0,${-thinkness / 2}));`;
   let L23_axis = `#${startNum + 17}= IFCAXIS2PLACEMENT3D(#${startNum + 24},$,$);`;
   let L24_point = `#${startNum + 24}= IFCCARTESIANPOINT((0.0,0.0,0.0));`;
   let L25_direcExtrude = `#${startNum + 18}= IFCDIRECTION((0.0,0.0,1.0));`;
 
   let result =
-    L1_ifcWall +"\n"+
-    L2_ifcLocalPlacement +"\n"+
-    L3_axis2Placement +"\n"+
-    L4_cartesianpoint1 +"\n"+
-    L5_direction1 +"\n"+
-    L6_ifcProductDef +"\n"+
-    L7_shape1 +"\n"+
-    L8_trimmedCurve +"\n"+
-    L9_line +"\n"+
-    L10_pointLine +"\n"+
-    L11_vectorLine +"\n"+
-    L12_direcVector +"\n"+
-    L13_pointShape1 +"\n"+
-    L14_point2Shape1 +"\n"+
-    L15_shape2 +"\n"+
-    L16_extrudeSolid +"\n"+
-    L17_profileDef +"\n"+
-    L18_polyLine +"\n"+
-    L19_point1 +"\n"+
-    L20_point2 +"\n"+
-    L21_point3 +"\n"+
-    L22_point4 +"\n"+
-    L23_axis +"\n"+
-    L24_point +"\n"+
+    L1_ifcWall +
+    '\n' +
+    L2_ifcLocalPlacement +
+    '\n' +
+    L3_axis2Placement +
+    '\n' +
+    L4_cartesianpoint1 +
+    '\n' +
+    L5_direction1 +
+    '\n' +
+    L6_ifcProductDef +
+    '\n' +
+    L7_shape1 +
+    '\n' +
+    L8_trimmedCurve +
+    '\n' +
+    L9_line +
+    '\n' +
+    L10_pointLine +
+    '\n' +
+    L11_vectorLine +
+    '\n' +
+    L12_direcVector +
+    '\n' +
+    L13_pointShape1 +
+    '\n' +
+    L14_point2Shape1 +
+    '\n' +
+    L15_shape2 +
+    '\n' +
+    L16_extrudeSolid +
+    '\n' +
+    L17_profileDef +
+    '\n' +
+    L18_polyLine +
+    '\n' +
+    L19_point1 +
+    '\n' +
+    L20_point2 +
+    '\n' +
+    L21_point3 +
+    '\n' +
+    L22_point4 +
+    '\n' +
+    L23_axis +
+    '\n' +
+    L24_point +
+    '\n' +
     L25_direcExtrude;
   return { endNum: startNum + 25, result: result };
 }

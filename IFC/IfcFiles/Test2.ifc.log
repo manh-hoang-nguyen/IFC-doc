@@ -1,0 +1,75 @@
+
+
+/******************************************************************************************
+* ReadStepFile diagnostics.
+* Date:                           Mon Apr 27 09:59:27 2020
+* Produced by:                    The EXPRESS Data Manager Version 5.02.0100.07 : 28 Aug 2013
+* Module:                         EDMstepFileFactory/EDMstandAlone
+* Host:                           POR80071383
+* Database:                       D:\DATA\mh.nguyen.EGIS\AppData\Local\Temp\{74EE5A6C-4A46-44B0-9118-62F5CB0DAF47}\ifc
+* Database version:               5507
+* Database creation date:         Mon Apr 27 09:59:26 2020
+* Model to populate:              DataRepository.ifcimport
+* Header model to populate:       
+* Step file name:                 Test2.ifc
+* EDMuser:                        sdai-user
+* EDMgroup:                       sdai-group
+* License ID and type:            5605 : Permanent license. Expiry date: 
+* EDMstepFileFactory options:     010201000002
+******************************************************************************************/
+
+/*     43 */ #309
+---------------------------------------^
+*** Recoverable Error: Reference not found in this STEP file or no corresponding instance in EDM *** on line 43.
+                                        
+/*    121 */ #128,1
+------------------------------------------^
+*** Recoverable Error: Inconsistency: REAL expected - INTEGER found. *** on line 121.
+                                           
+/*    124 */ #125= IFCCARTESIANPOINT((5
+----------------------------------------------^
+*** Recoverable Error: Inconsistency: REAL expected - INTEGER found. *** on line 124.
+                                               
+/*    142 */ #144
+------------------------------------------^
+*** Recoverable Error: Reference not found in this STEP file or no corresponding instance in EDM *** on line 142.
+                                           
+/*    143 */ #144= IFCCARTESIANPOINT((
+-------------------------------------^
+*** Recoverable Error: Error in aggregate creation: Instance does not exist.  *** on line 143.
+                                      1.
+---------------------------------------^
+*** Recoverable Error: 
+Failure during storing attribute: Instance does not exist. *** on line 143.
+                                        ,-0.1.
+---------------------------------------------^
+*** Recoverable Error: Syntax error in REAL/INTEGER *** on line 143.
+                                              
+---------------------------------------------^
+*** Recoverable Error: Inconsistency: REAL expected - UKNOWN datatype found. *** on line 143.
+                                              ,1.
+------------------------------------------------^
+*** Recoverable Error: 
+Failure during storing attribute: Instance does not exist. *** on line 143.
+                                                 
+/*    164 */ #160= IFCCARTESIANPOINT(5.
+---------------------------------------^
+*** Recoverable Error: Inconsistency: AGGREGATE expected - REAL found. *** on line 164.
+                                        ,5.,0)
+---------------------------------------------^
+*** Recoverable Error: Wrong number of attributes; expected: 1  found: 3 *** on line 164.
+                                              
+
+------------------------------------------------------------------------------------------------
+ Operation terminated with error: Error/warning during STEP File read operation.
+
+
+Fatal errors...........: 0
+Recoverable errors.....: 11
+Warnings...............: 0
+Info...................: 0
+total..................: 11
+Lines..................: 192
+
+------------------------------------------------------------------------------------------------
+

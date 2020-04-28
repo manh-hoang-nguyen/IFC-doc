@@ -1,0 +1,12 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [DesignTransferView_V1]'),'2;1');
+FILE_NAME('Model name test','2020-04-27T18:48:30',('Manh Hoang NGUYEN'),('Egis'),'Toolkit Version 0.0.1','IfcGenerator Version 0.0.1','Egis');
+FILE_SCHEMA(('IFC2x3'));
+ENDSEC;
+
+DATA;
+body
+ENDSEC;
+
+END-ISO-10303-21;

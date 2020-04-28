@@ -1,1 +1,3 @@
-function ownerHistoryGenerator (startNum, ownerHistoryInput)
+function ownerHistoryGenerator (startNum, ownerHistoryInput){
+    
+}

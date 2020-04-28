@@ -1,11 +1,3 @@
-ISO-10303-21;
-HEADER;
-FILE_DESCRIPTION(('ViewDefinition [DesignTransferView_V1]'),'2;1');
-FILE_NAME('Model name test','2020-04-27T18:48:30',('Manh Hoang NGUYEN'),('Egis'),'Toolkit Version 0.0.1','IfcGenerator Version 0.0.1','Egis');
-FILE_SCHEMA(('IFC2x3'));
-ENDSEC;
-
-DATA;
 #1 = IFCAPPLICATION(#2,'0.0.1','KEEP TRACK','KT');
 #2= IFCORGANIZATION($,'Egis - BIM',$,$,$);
 #3= IFCCARTESIANPOINT((0.,0.,0.));
@@ -38,6 +30,3 @@ DATA;
 #27= IFCPERSONANDORGANIZATION(#28,#29,$);
 #28= IFCPERSON('manh-hoang.nguyen@egis.fr','NGUYEN','NGUYENManh Hoang',($),$,$,('BIM  engineer'),$);
 #29= IFCORGANIZATION($,'Egis',$ ,$,$);
-ENDSEC;
-
-END-ISO-10303-21;

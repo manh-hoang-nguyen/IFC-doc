@@ -4,7 +4,7 @@ const { rootGenerator } = require('../rootGenerator');
 
 const header = require('./header');
 
-const body = 'body';
+const body = require('./body');
 
 const result = rootGenerator(header, body);
 

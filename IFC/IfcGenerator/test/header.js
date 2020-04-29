@@ -9,7 +9,7 @@ const organization = 'Egis';
 const preprocessor_version = 'Toolkit Version 0.0.1';
 const origination_system = 'IfcGenerator Version 0.0.1';
 const authorization = 'Egis';
-const schema = 'IFC2x3';
+const schema = 'IFC2X3';
 
 let result = headerGenerator(
   desc,

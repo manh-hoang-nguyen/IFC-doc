@@ -1,3 +1,3 @@
-#6= IFCPERSON('manh-hoang.nguyen@egis.fr','NGUYEN','NGUYENManh Hoang',($),$,$,('BIM engineer'),$);
+#6= IFCPERSON('manh-hoang.nguyen@egis.fr','NGUYEN','NGUYENManh Hoang',$,$,$,('BIM engineer'),$);
 #7= IFCORGANIZATION($,'Egis',$ ,$,$);
 #8= IFCPERSONANDORGANIZATION(#6,#7,$);

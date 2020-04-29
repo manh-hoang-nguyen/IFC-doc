@@ -8,3 +8,5 @@ require('./body');
 require('./ownerHistory');
 require('./building');
 require('./project');
+require('./storey');
+require('./relAggregates');

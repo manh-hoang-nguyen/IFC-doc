@@ -6,9 +6,18 @@ const user = {
   firstName: 'NGUYEN',
   lastName: 'Manh Hoang',
   company: 'Egis',
-  status: 'BIM  engineer',
+  status: 'BIM engineer',
 };
-const { result } = bodyGenerator(user);
+const model = {
+  IfcBuildingGUID: '39t4Pu3nTC4ekXYRIHJB9W',
+};
+
+const project = {
+  ifcProjectGuid: '0$WU4A9R19$vKWO$AdOnKA',
+  name: 'projectTest',
+  description: 'description of project',
+};
+const { result } = bodyGenerator(user, model, project);
 
 // writeFile function with filename, content and callback function
 fs.writeFile('./IFC/IfcGenerator/outputTests/body.ifc', result, function (err) {

@@ -1,7 +1,10 @@
 require('./wall');
 require('./header');
-require('./rootGenerator');
+require('./root');
 require('./unit.js');
 require('./personAndOrganization');
 require('./configGenerator');
 require('./body');
+require('./ownerHistory');
+require('./building');
+require('./project');

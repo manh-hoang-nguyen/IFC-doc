@@ -7,7 +7,7 @@ const user = {
   firstName: 'NGUYEN',
   lastName: 'Manh Hoang',
   company: 'Egis',
-  status: 'BIM  engineer',
+  status: 'BIM engineer',
 };
 
 const { result, endNum } = personAndOrganizationGenerator(6, user);

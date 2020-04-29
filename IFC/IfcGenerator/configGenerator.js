@@ -2,23 +2,20 @@ const { Organization, Application } = require('./constants');
 const { valueConverter } = require('./utils/valueConverter');
 
 function configGenerator(startNum) {
-  const L1 = `#${startNum} = IFCAPPLICATION(#${startNum + 1},${valueConverter(Application.Version)},${valueConverter(
-    Application.ApplicationFullName,
-  )},${valueConverter(Application.ApplicationIdentifier)});`;
-  const L2 = `#${startNum + 1}= IFCORGANIZATION($,${valueConverter(Organization.Name)},$,$,$);`;
-  const L3 = `#${startNum + 2}= IFCCARTESIANPOINT((0.,0.,0.));`;
-  const L4 = `#${startNum + 3}= IFCCARTESIANPOINT((0.,0.));`;
-  const L5 = `#${startNum + 4}= IFCDIRECTION((1.,0.,0.));`;
-  const L6 = `#${startNum + 5}=  IFCDIRECTION((-1.,0.,0.));`;
-  const L7 = `#${startNum + 6}= IFCDIRECTION((0.,1.,0.));`;
-  const L8 = `#${startNum + 7}= IFCDIRECTION((0.,-1.,0.));`;
-  const L9 = `#${startNum + 8}= IFCDIRECTION((0.,0.,1.));`;
-  const L10 = `#${startNum + 9}= IFCDIRECTION((0.,0.,-1.));`;
-  const L11 = `#${startNum + 10}= IFCDIRECTION((1.,0.));`;
-  const L12 = `#${startNum + 11}= IFCDIRECTION((-1.,0.));`;
-  const L13 = `#${startNum + 12}= IFCDIRECTION((0.,1.));`;
-  const L14 = `#${startNum + 13}= IFCDIRECTION((0.,-1.));`;
-  const L15 = `#${startNum + 14}= IFCAXIS2PLACEMENT3D(#${startNum + 2},$,$);`;
+  const L1 = `#${startNum}= IFCORGANIZATION($,${valueConverter(Organization.Name)},$,$,$);`;
+  const L2 = `#${startNum + 1}= IFCCARTESIANPOINT((0.,0.,0.));`;
+  const L3 = `#${startNum + 2}= IFCCARTESIANPOINT((0.,0.));`;
+  const L4 = `#${startNum + 3}= IFCDIRECTION((1.,0.,0.));`;
+  const L5 = `#${startNum + 4}= IFCDIRECTION((-1.,0.,0.));`;
+  const L6 = `#${startNum + 5}= IFCDIRECTION((0.,1.,0.));`;
+  const L7 = `#${startNum + 6}= IFCDIRECTION((0.,-1.,0.));`;
+  const L8 = `#${startNum + 7}= IFCDIRECTION((0.,0.,1.));`;
+  const L9 = `#${startNum + 8}= IFCDIRECTION((0.,0.,-1.));`;
+  const L10 = `#${startNum + 9}= IFCDIRECTION((1.,0.));`;
+  const L11 = `#${startNum + 10}= IFCDIRECTION((-1.,0.));`;
+  const L12 = `#${startNum + 11}= IFCDIRECTION((0.,1.));`;
+  const L13 = `#${startNum + 12}= IFCDIRECTION((0.,-1.));`;
+  const L14 = `#${startNum + 13}= IFCAXIS2PLACEMENT3D(#${startNum + 1},$,$);`;
 
   const result =
     L1 +
@@ -47,11 +44,9 @@ function configGenerator(startNum) {
     '\n' +
     L13 +
     '\n' +
-    L14 +
-    '\n' +
-    L15;
+    L14;
 
-  return { endNum: startNum + 15, result };
+  return { endNum: startNum + 14, result };
 }
 
 module.exports = { configGenerator };

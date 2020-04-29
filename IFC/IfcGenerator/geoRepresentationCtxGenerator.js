@@ -10,7 +10,7 @@ function geoRepresentationCtxGenerator(startNum) {
   }= IFCGEOMETRICREPRESENTATIONSUBCONTEXT('FootPrint','Model',*,*,*,*,#96,$,.MODEL_VIEW.,$);`;
   const L6 = `#${startNum + 5}= IFCAXIS2PLACEMENT3D(#${startNum + 7},$,$);`;
   const L7 = `#${startNum + 6}= IFCDIRECTION((0.0,1.0));`;
-  const L8 = `#${startNum + 7}=  IFCCARTESIANPOINT((0.0,0.0,0.0));`;
+  const L8 = `#${startNum + 7}= IFCCARTESIANPOINT((0.0,0.0,0.0));`;
 
   const result = L1 + '\n' + L2 + '\n' + L3 + '\n' + L4 + '\n' + L5 + '\n' + L6 + '\n' + L7 + '\n' + L8;
   return { endNum: startNum + 5, result };

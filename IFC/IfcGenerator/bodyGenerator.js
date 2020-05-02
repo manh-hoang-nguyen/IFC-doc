@@ -8,12 +8,18 @@ const { buildingGenerator } = require('./buildingGenerator');
 const { projectGenerator } = require('./projectGenerator');
 const { storeyGenerator } = require('./storeyGenerator');
 const { relAggregatesGenerator } = require('./relAggregatesGenerator');
+const { ifcWallStandardCaseGenerator } = require('./wallGenerator');
+const { localPlacementRefGenerator } = require('./localPlacementRefGenerator');
 
-function bodyGenerator(user, model = {}, project = {}, levels = []) {
+function bodyGenerator(user, model = {}, project = {}, levels = [], walls = []) {
   const application = applicationGenerator(1);
   const config = configGenerator(application.endNum);
-  const unit = unitGenerator(config.endNum);
+  const originPointNum = application.endNum;
+  const localPlacementRef = localPlacementRefGenerator(config.endNum, `#${originPointNum}`);
+  const localPlacementRefNum = localPlacementRef.endNum - 1;
+  const unit = unitGenerator(localPlacementRef.endNum);
   const geometricRepresentationCtx = geoRepresentationCtxGenerator(unit.endNum);
+  const geoCtxWall = { axisCtxNum: `#${unit.endNum + 1}`, bodyCtxNum: `#${unit.endNum + 2} ` };
   const personAndOrganization = personAndOrganizationGenerator(geometricRepresentationCtx.endNum, user);
   const ownerHistory = ownerHistoryGenerator(personAndOrganization.endNum, personAndOrganization.endNum - 1, 1);
   const ownerHistoryNum = `#${ownerHistory.endNum - 1}`;
@@ -32,6 +38,7 @@ function bodyGenerator(user, model = {}, project = {}, levels = []) {
     startNum: ifcStoreyStartNum,
     endNum: ifcStorey.endNum,
   };
+
   const relAggregates = relAggregatesGenerator(
     ifcStorey.endNum,
     ownerHistoryNum,
@@ -40,11 +47,25 @@ function bodyGenerator(user, model = {}, project = {}, levels = []) {
     storeyNum,
   );
 
-  const endNum = relAggregates.endNum;
+  const levelsWithNum = levels.map((level, i) => {
+    return { ...level, num: i + ifcStoreyStartNum };
+  });
+
+  const ifcWalls = ifcWallStandardCaseGenerator(
+    relAggregates.endNum,
+    `${ownerHistoryNum}`,
+    geoCtxWall,
+    `#${localPlacementRefNum}`,
+    walls,
+    levelsWithNum,
+  );
+  const endNum = ifcWalls.endNum;
   const result =
     application.result +
     '\n' +
     config.result +
+    '\n' +
+    localPlacementRef.result +
     '\n' +
     unit.result +
     '\n' +
@@ -60,7 +81,9 @@ function bodyGenerator(user, model = {}, project = {}, levels = []) {
     '\n' +
     ifcStorey.result +
     '\n' +
-    relAggregates.result;
+    relAggregates.result +
+    '\n' +
+    ifcWalls.result;
 
   return { result, endNum };
 }

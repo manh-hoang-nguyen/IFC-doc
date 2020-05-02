@@ -7,5 +7,5 @@ function generateGlobalId() {
   }
   return result;
 }
-console.log(generateGlobalId());
+
 module.exports = generateGlobalId;

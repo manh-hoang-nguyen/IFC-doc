@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { bodyGenerator } = require('../bodyGenerator');
-const generateId = require('../utils/generateGlobalId');
+const generateGlobalId = require('../utils/generateGlobalId');
 
 const user = {
   email: 'manh-hoang.nguyen@egis.fr',
@@ -9,17 +9,23 @@ const user = {
   company: 'Egis',
   status: 'BIM engineer',
 };
-const model = {
-  IfcBuildingGUID: generateId(),
-  name: 'Maquette Structure',
+const building = {
+  name: 'maquette Structre',
+  ifcBuildingGUID: generateGlobalId(),
 };
 
 const project = {
-  ifcProjectGuid: generateId(),
+  ifcProjectGuid: generateGlobalId(),
   name: 'projectTest',
   description: 'description of project',
 };
-
+const site = {
+  name: 'SiteName',
+  latitude: '(48,51,23,999633)',
+  longitude: '(2,21,3,553905)',
+  elevation: 0,
+  ifcGuid: generateGlobalId(),
+};
 const levels = [
   {
     ifcGuid: '1xS3BCk291UvhgP2dvNMQJ',
@@ -46,7 +52,7 @@ const walls = [
     thinkness: 0.2,
     originPoint: '(-4.71416300553985,-1.6697739494469,0.)',
     orientation: '(-0.642787609686542,0.766044443118976,0.)',
-    ifcGuid: generateId(),
+    ifcGuid: generateGlobalId(),
     elementId: '11178222',
     level: 'Niveau 1',
   },
@@ -57,7 +63,7 @@ const walls = [
     thinkness: 0.3,
     originPoint: '(4.71416300553985,2,0.)',
     orientation: '(0.642787609686542,0.766044443118976,0.)',
-    ifcGuid: generateId(),
+    ifcGuid: generateGlobalId(),
     elementId: '11178223',
     level: 'Niveau 2',
   },
@@ -68,12 +74,12 @@ const walls = [
     thinkness: 0.4,
     originPoint: '(0.,0.,0.)',
     orientation: '(0.642787609686542,1.,0.)',
-    ifcGuid: generateId(),
+    ifcGuid: generateGlobalId(),
     elementId: '111782555',
     level: 'Niveau 3',
   },
 ];
-const { result, endNum } = bodyGenerator(user, model, project, levels, walls);
+const { result, endNum } = bodyGenerator(user, building, project, site, levels, walls);
 
 // writeFile function with filename, content and callback function
 fs.writeFile('./IFC/IfcGenerator/outputTests/body.ifc', result, function (err) {

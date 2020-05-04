@@ -10,8 +10,9 @@ const { storeyGenerator } = require('./storeyGenerator');
 const { relAggregatesGenerator } = require('./relAggregatesGenerator');
 const { ifcWallStandardCaseGenerator } = require('./wallGenerator');
 const { localPlacementRefGenerator } = require('./localPlacementRefGenerator');
+const { siteGenerator } = require('./siteGenerator');
 
-function bodyGenerator(user, model = {}, project = {}, levels = [], walls = []) {
+function bodyGenerator(user, building = {}, project = {}, site = {}, levels = [], walls = []) {
   const application = applicationGenerator(1);
   const config = configGenerator(application.endNum);
   const originPointNum = application.endNum;
@@ -31,8 +32,10 @@ function bodyGenerator(user, model = {}, project = {}, levels = [], walls = []) 
     `#${geometricRepresentationCtx.endNum - 5}`,
     `#${unit.endNum - 1}`,
   );
-  const building = buildingGenerator(ifcproject.endNum, model.IfcBuildingGUID, `${ownerHistoryNum}`);
-  const ifcStoreyStartNum = building.endNum;
+  const siteNum = ifcproject.endNum;
+  const ifcSite = siteGenerator(ifcproject.endNum, ownerHistoryNum, `#${localPlacementRefNum}`, site);
+  const ifcBuilding = buildingGenerator(ifcSite.endNum, building, `${ownerHistoryNum}`);
+  const ifcStoreyStartNum = ifcBuilding.endNum;
   const ifcStorey = storeyGenerator(ifcStoreyStartNum, `${ownerHistoryNum}`, levels);
   const storeyNum = {
     startNum: ifcStoreyStartNum,
@@ -43,7 +46,8 @@ function bodyGenerator(user, model = {}, project = {}, levels = [], walls = []) 
     ifcStorey.endNum,
     ownerHistoryNum,
     `#${ProjectNum}`,
-    `#${building.endNum - 1}`,
+    `#${siteNum}`,
+    `#${ifcBuilding.endNum - 1}`,
     storeyNum,
   );
 
@@ -77,7 +81,9 @@ function bodyGenerator(user, model = {}, project = {}, levels = [], walls = []) 
     '\n' +
     ifcproject.result +
     '\n' +
-    building.result +
+    ifcSite.result +
+    '\n' +
+    ifcBuilding.result +
     '\n' +
     ifcStorey.result +
     '\n' +

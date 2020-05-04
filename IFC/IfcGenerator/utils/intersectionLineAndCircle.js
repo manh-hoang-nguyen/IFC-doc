@@ -9,7 +9,7 @@
  * quadratic equation: (1+a^2)x^2 +2(ab-aB-A)x + (b^2 -2Bb + A^2 + B^2 - R^2) = 0
  *                     { A  }x^2 + {    B    }x+ {            C             } =0
  *
- *  quadratic formula: x=(-B+-Sqrt(B^2-4AC))/(2A)
+ *  quadratic formula: x=(-B ± Sqrt(B^2-4AC))/(2A)
  */
 
 /**

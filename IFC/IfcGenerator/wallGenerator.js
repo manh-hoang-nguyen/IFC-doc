@@ -207,7 +207,6 @@ function createWallArc(
   const L26 = `#${startNum + 19}= IFCCOMPOSITECURVESEGMENT(.CONTINUOUS.,.T.,#${segmentArc2.endNum});`;
   const L27 = `#${segmentArc2.endNum}= IFCPOLYLINE((#${segmentArc2.endNum + 1},#${segmentArc2.endNum + 2}));`;
   const pointLine2 = getPointWall(endPoint, centerPoint, thinkness / 2);
-  console.log(pointLine2.intersectionPoint1.X, pointLine2.intersectionPoint1.Y);
   const L28 = `#${segmentArc2.endNum + 1}= IFCCARTESIANPOINT((${pointLine2.intersectionPoint1.X - startPoint.X},${
     pointLine2.intersectionPoint1.Y - startPoint.Y
   }));`;
